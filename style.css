@@ -1,0 +1,184 @@
+:root {
+  --bg-color: #121212;
+  --clock-bg: #1e1e1e;
+  --clock-border: #2a2a2a;
+  --accent-color: #00f2ff; /* Cyan neon */
+  --hour-hand-color: #e0e0e0;
+  --minute-hand-color: #a0a0a0;
+  --second-hand-color: var(--accent-color);
+  --shadow-light: rgba(255, 255, 255, 0.05);
+  --shadow-dark: rgba(0, 0, 0, 0.5);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  font-family: 'Outfit', sans-serif;
+  overflow: hidden;
+}
+
+.clock-container {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: var(--clock-bg);
+  box-shadow: 20px 20px 60px var(--shadow-dark),
+    -20px -20px 60px var(--shadow-light);
+  border: 2px solid var(--clock-border);
+}
+
+.clock {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hands */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 10px;
+  z-index: 10;
+  transform: translateX(-50%) rotate(0deg); /* Initial state */
+  transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.3, 1); /* Smooth tick with bounce */
+}
+
+.hour-hand {
+  width: 6px;
+  height: 25%;
+  background-color: var(--hour-hand-color);
+  margin-left: -3px; /* Center alignment fix */
+}
+
+.minute-hand {
+  width: 4px;
+  height: 35%;
+  background-color: var(--minute-hand-color);
+  margin-left: -2px;
+}
+
+.second-hand {
+  width: 2px;
+  height: 40%;
+  background-color: var(--second-hand-color);
+  margin-left: -1px;
+  z-index: 11;
+  box-shadow: 0 0 10px var(--accent-color); /* Neon glow */
+  transition: transform 0.05s cubic-bezier(0.1, 2.7, 0.58, 1); /* Snappy tick */
+}
+
+/* Center Point */
+.center-point {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: var(--accent-color);
+  border-radius: 50%;
+  z-index: 12;
+  box-shadow: 0 0 5px var(--accent-color);
+}
+
+/* Markers */
+.marker {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  color: #666;
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding-top: 15px;
+  pointer-events: none;
+}
+
+.marker-12 {
+  transform: rotate(0deg);
+}
+.marker-3 {
+  transform: rotate(90deg);
+}
+.marker-6 {
+  transform: rotate(180deg);
+}
+.marker-9 {
+  transform: rotate(270deg);
+}
+
+/* Fix rotation for text */
+.marker-3 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-top: 0;
+  padding-right: 20px;
+}
+.marker-6 {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-top: 0;
+  padding-bottom: 15px;
+}
+.marker-9 {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 0;
+  padding-left: 20px;
+}
+
+/* Ticks */
+.tick {
+  position: absolute;
+  width: 2px;
+  height: 10px;
+  background-color: #333;
+  left: 50%;
+  top: 10px;
+  transform-origin: 50% 165px; /* Radius - top offset */
+  margin-left: -1px;
+}
+
+.tick-1 {
+  transform: rotate(30deg);
+}
+.tick-2 {
+  transform: rotate(60deg);
+}
+.tick-4 {
+  transform: rotate(120deg);
+}
+.tick-5 {
+  transform: rotate(150deg);
+}
+.tick-7 {
+  transform: rotate(210deg);
+}
+.tick-8 {
+  transform: rotate(240deg);
+}
+.tick-10 {
+  transform: rotate(300deg);
+}
+.tick-11 {
+  transform: rotate(330deg);
+}
